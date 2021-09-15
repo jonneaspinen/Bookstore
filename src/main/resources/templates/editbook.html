@@ -12,7 +12,7 @@
 	<div th:style="'padding-left:20px; width:40%;'">
 		<form th:object="${book}" th:action="@{../save}" action="#" method="post">
 			
-			<div class="form-group"><input class="form-control" type="hidden" id="id" th:field="${id}" /></div>
+			<div class="form-group"><input class="form-control" type="hidden" id="id" th:field="*{id}" /></div>
 			
 			<div class="form-group"><label for="author">Author</label>
 			<input class="form-control" type="text" id="author" th:field="*{author}" /></div>
