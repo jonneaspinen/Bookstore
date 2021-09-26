@@ -4,30 +4,38 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 
 public class Book {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	private String author;
 	private String title;
 	private String isbn;
 	private String year;
 	private String price;
-	
-	public Book() {}
-	
-	public Book(String author, String title, String isbn, String year, String price) {
+
+	@ManyToOne
+	@JoinColumn(name = "departmentid")
+	private Department department;
+
+	public Book() {
+	}
+
+	public Book(String author, String title, String isbn, String year, String price, Department department) {
 		super();
 		this.author = author;
 		this.title = title;
 		this.isbn = isbn;
 		this.year = year;
 		this.price = price;
+		this.department = department;
 	}
 
 	public Long getId() {
@@ -78,10 +86,22 @@ public class Book {
 		this.price = price;
 	}
 
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", author=" + author + ", title=" + title + ", isbn=" + isbn + ", year=" + year
-				+ ", price=" + price + "]";
+		if (this.department != null)
+			return "Book [id=" + id + ", author=" + author + ", title=" + title + ", isbn=" + isbn + ", year=" + year
+					+ ", price=" + price + " department =" + this.getDepartment() + "]";
+		else
+			return "Book [id=" + id + ", author=" + author + ", title=" + title + ", isbn=" + isbn + ", year=" + year
+					+ ", price=" + price + "]";
 	}
-	
+
 }

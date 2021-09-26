@@ -27,6 +27,14 @@
 		      <div class="form-group" ><label for="price">Price</label>
 		      <input class="form-control" type="text" id="price" th:field="*{price}" /></div>
 		      
+		      <div style="clear: both; display: block; height: 10px;"></div>						
+		  	<label for="deplist">Department</label>
+			 <select id="deplist" th:field="*{department}" class="form-control">
+       			<option th:each="department: ${departments}" th:value="${department.departmentid}" th:text="${department.name}"></option>
+    		</select>
+			
+			<div style="clear: both; display: block; height: 10px;"></div>
+		      
 		      <input class="btn btn-success" type="submit" value="Save"></input>
   </form>
 </div>
